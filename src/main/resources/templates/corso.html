@@ -6,7 +6,7 @@
     <title>Seleziona Formazione</title>
 </head>
 <body>
-    <form action="/submit" method="POST">
+    <form action="/corsi" method="POST">
         <label for="corso">Seleziona il corso:</label>
         <select id="corso" name="corso">
             <option th:each="corso : ${corsi}" th:value="${corso}" th:text="${corso}"></option>
