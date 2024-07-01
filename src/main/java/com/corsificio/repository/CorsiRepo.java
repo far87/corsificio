@@ -10,5 +10,6 @@ import com.corsificio.model.Corso;
 @Repository
 public interface CorsiRepo extends JpaRepository<Corso, Long> {
 	Optional<Corso> findById(Long id);
+	Optional<Corso> findByDescrizione(String descrizione);
 
 }

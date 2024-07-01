@@ -2,6 +2,7 @@ package com.corsificio.web;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -32,10 +33,14 @@ public class CorsiController {
 		model.addAttribute("corsi",corsi);
 		return "corso";
 	}
-	
+/* Da rivedere logica*/
 	@PostMapping
 	public ResponseEntity<?> post(String corso){
-		String base="Hai scelto ";
-		return new ResponseEntity<>(base+corso,HttpStatus.OK);
+		Optional<Corso> scelto=corsiRepo.findByDescrizione(corso);
+		Corso corsoScelto=scelto.get();
+		if(corsoScelto.getDisponibile()) {
+			return new ResponseEntity<>("Il corso è disponibile e dura "+corsoScelto.getOre()+" ore.",HttpStatus.OK);
+		}
+		return new ResponseEntity<>("Il corso non è disponibile ",HttpStatus.OK);
 	}
 }
