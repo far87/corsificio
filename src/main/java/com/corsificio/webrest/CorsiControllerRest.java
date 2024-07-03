@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.corsificio.model.Corso;
 import com.corsificio.repository.CorsiRepo;
@@ -69,6 +71,16 @@ public class CorsiControllerRest {
 		return new ResponseEntity<>(corsoSalvato, HttpStatus.CREATED);
 	}
 	
+	/**
+	 * Esempio di utilizzo di RestTemplate che chiama delle api di Google
+	 * @param query
+	 * @return json 
+	 */
+	@GetMapping(path = "/books")
+	public String getBooks(@RequestParam String query) {
+		RestTemplate rest= new RestTemplate();
+		return rest.getForObject("https://www.googleapis.com/books/v1/volumes?q={query}", String.class, query);
+	}
 	
 
 }
