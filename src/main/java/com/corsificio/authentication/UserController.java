@@ -1,6 +1,7 @@
 package com.corsificio.authentication;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +17,12 @@ public class UserController {
 	@Autowired
 	UserRepository userRepo;
 	
+	@Autowired
+	PasswordEncoder pwenc;
+	
 	@PostMapping("/save")
 	public User saveUser(@RequestBody User user){
+		user.setPwd(pwenc.encode(user.getPwd()));
 		return userRepo.save(user);
 	}
 }

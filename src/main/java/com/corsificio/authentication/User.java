@@ -7,6 +7,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -30,7 +31,7 @@ public class User implements UserDetails {
 	private boolean credentialsNonExpired;
 	private boolean enabled;
 	
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Role> roles;
 	
 	public User() {};
@@ -64,6 +65,7 @@ public class User implements UserDetails {
 		// TODO Auto-generated method stub
 		return pwd;
 	}
+	
 	@Override
 	public boolean isAccountNonExpired() {
 		// TODO Auto-generated method stub
