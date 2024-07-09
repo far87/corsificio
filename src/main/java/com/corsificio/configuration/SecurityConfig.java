@@ -20,12 +20,22 @@ public class SecurityConfig  {
 	@Autowired
 	UserRepository userRepo;
 	
-	
+	/**
+	 * it must be used both in save user phase and login phase, pwd must be not visible also in db 
+	 * 
+	 * @return
+	 */
 	@Bean
 	public PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 	
+	/**
+	 * Defines autorization rules
+	 * @param http
+	 * @return
+	 * @throws Exception
+	 */
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 		http.authorizeHttpRequests().requestMatchers("/login").permitAll().
@@ -38,7 +48,10 @@ public class SecurityConfig  {
 		
 	}
 	
-	
+	/**
+	 * Manages customized authentication
+	 * @return authenticated user
+	 */
 	@Bean
 	public UserDetailsService userDetailsService() {
 		return (username)->{

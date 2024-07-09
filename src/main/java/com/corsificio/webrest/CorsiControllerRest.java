@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import com.corsificio.model.Corso;
+import com.corsificio.model.PropertyClass;
 import com.corsificio.repository.CorsiRepo;
 
 @RestController
@@ -27,6 +28,9 @@ public class CorsiControllerRest {
 	
 	@Autowired
 	CorsiRepo corsiRepo;
+	
+	@Autowired
+	PropertyClass prop;
 	
 	@GetMapping(path = "/corsi")
 	public List<Corso> getCorsi(){
@@ -80,6 +84,11 @@ public class CorsiControllerRest {
 	public String getBooks(@RequestParam String query) {
 		RestTemplate rest= new RestTemplate();
 		return rest.getForObject("https://www.googleapis.com/books/v1/volumes?q={query}", String.class, query);
+	}
+	
+	@GetMapping("/prop")
+	public PropertyClass getprop(){
+		return prop;
 	}
 	
 
