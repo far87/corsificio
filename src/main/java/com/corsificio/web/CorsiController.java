@@ -55,4 +55,12 @@ public class CorsiController {
 	public String action() {
 		return "Action attiva!";
 	}
+	
+	@GetMapping("/git_action")
+	@ResponseBody
+	public String action2() {
+		return "Action attiva2!";
+	}
+
+	
 }
