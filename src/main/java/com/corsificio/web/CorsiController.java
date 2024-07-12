@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.corsificio.model.Corso;
 import com.corsificio.repository.CorsiRepo;
@@ -47,5 +48,11 @@ public class CorsiController {
 			return new ResponseEntity<>("Il corso è disponibile e dura "+corsoScelto.getOre()+" ore.",HttpStatus.OK);
 		}
 		return new ResponseEntity<>("Il corso non è disponibile ",HttpStatus.OK);
+	}
+	
+	@GetMapping("/git_action_prova")
+	@ResponseBody
+	public String action() {
+		return "Action attiva!";
 	}
 }
