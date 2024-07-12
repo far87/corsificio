@@ -50,17 +50,5 @@ public class CorsiController {
 		return new ResponseEntity<>("Il corso non è disponibile ",HttpStatus.OK);
 	}
 	
-	@GetMapping("/git_action_prova")
-	@ResponseBody
-	public String action() {
-		return "Action attiva!";
-	}
-	
-	@GetMapping("/git_action")
-	@ResponseBody
-	public String action2() {
-		return "Action attiva2!";
-	}
-
 	
 }
